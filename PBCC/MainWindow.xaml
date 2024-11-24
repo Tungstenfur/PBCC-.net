@@ -1,0 +1,26 @@
+﻿<Window x:Class="PBCC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PBCC"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10" Content="Fans control" FontSize="20" Name="Fans" Click="Fans_Click"/>
+        <TextBlock Text="0" VerticalAlignment="Bottom" Name="Temp" FontSize="30"/>
+        <Grid Height="400" Width="400" Name="fans">
+            <Label Content="Fans control" FontSize="20"/>
+            <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0" Background="Red" Name="Fan1" Click="Fan1_Click"/>
+            <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,50,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan1Prog"/>
+            <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,100,0,0" Background="Red" Name="Fan2" Click="Fan2_Click"/>
+            <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,100,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan2Prog"/>
+            <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,150,0,0" Background="Red" Name="Fan3" Click="Fan3_Click"/>
+            <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,150,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan3Prog"/>
+            <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,200,0,0" Background="Red" Name="Fan4" Click="Fan4_Click"/>
+            <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,200,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan4Prog"/>
+            <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,250,0,0" Background="Red" Name="Fan5" Click="Fan5_Click"/>
+            <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,250,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan5Prog"/>
+        </Grid>
+    </Grid>
+</Window>
