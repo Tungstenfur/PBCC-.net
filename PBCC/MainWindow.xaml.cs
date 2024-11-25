@@ -17,7 +17,7 @@ namespace PBCC
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool fan1Back, fan2Back, fan3Back, fan4Back, fan5Back;
+        bool fan1Back, fan2Back, fan3Back, fan4Back, fan5Back,laser1s,laser2s,laser3s,laser4s;
         double temp = 0;
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
@@ -41,6 +41,10 @@ namespace PBCC
             fan5.Interval = TimeSpan.FromMilliseconds(100);
             tempChange.Interval = TimeSpan.FromSeconds(1);
             tempChange.Start();
+        }
+        void HideAll()
+        {
+            fans.Visibility = Visibility.Collapsed;
         }
 
         private void Fan1_Click(object sender, RoutedEventArgs e)
@@ -150,7 +154,39 @@ namespace PBCC
 
         private void Fans_Click(object sender, RoutedEventArgs e)
         {
+            HideAll();
+            fans.Visibility = Visibility.Visible;
+        }
 
+        private void Laser_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        async private void laser1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!laser1s)
+            {
+                laser1.IsEnabled= false;
+                while (laser1.Opacity <= 1)
+                {
+                    laser1.Opacity += 0.01;
+                    await Task.Delay(30);
+                }
+                laser1.IsEnabled = true;
+                laser1s =true;
+            }
+            else{
+                laser1.IsEnabled = false;
+                while (laser1.Opacity >= 0.2)
+                {
+                    
+                    laser1.Opacity -= 0.01;
+                    await Task.Delay(30);
+                }
+                laser1.IsEnabled = true;
+                laser1s = false;
+            }
         }
 
         private void Fan3_Tick(object sender, EventArgs e)

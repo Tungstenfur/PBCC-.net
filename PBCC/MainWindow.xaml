@@ -8,8 +8,9 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10" Content="Fans control" FontSize="20" Name="Fans" Click="Fans_Click"/>
+        <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,70" Content="Reactor laser" FontSize="20" Name="Laser" Click="Laser_Click"/>
         <TextBlock Text="0" VerticalAlignment="Bottom" Name="Temp" FontSize="30"/>
-        <Grid Height="400" Width="400" Name="fans">
+        <Grid Height="400" Width="400" Name="fans" Visibility="Collapsed">
             <Label Content="Fans control" FontSize="20"/>
             <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,50,0,0" Background="Red" Name="Fan1" Click="Fan1_Click"/>
             <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,50,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan1Prog"/>
@@ -21,6 +22,22 @@
             <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,200,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan4Prog"/>
             <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,250,0,0" Background="Red" Name="Fan5" Click="Fan5_Click"/>
             <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,250,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan5Prog"/>
+        </Grid>
+        <Grid Height="400" Width="400" Name="lasers">
+            
+            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Right" Name="laser1" Opacity="0.2" Cursor="Hand" MouseLeftButtonDown="laser1_MouseLeftButtonDown"/>
+            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Left" Name="laser2" Opacity="0.2" Cursor="Hand"/>
+            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="laser3" Margin="0,0,-190,0" Opacity="0.2" Cursor="Hand">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-90"/>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Center" VerticalAlignment="Top" Name="laser4" Margin="0,0,-210,0" Opacity="0.2" Cursor="Hand">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="90"/>
+                </Image.RenderTransform>
+            </Image>
+            <Image Source="/images/core.png" Height="100" Width="100" Cursor="Hand"/>
         </Grid>
     </Grid>
 </Window>
