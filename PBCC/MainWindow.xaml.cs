@@ -17,7 +17,7 @@ namespace PBCC
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool fan1Back, fan2Back, fan3Back, fan4Back, fan5Back,laser1s,laser2s,laser3s,laser4s;
+        bool fan1Back, fan2Back, fan3Back, fan4Back, fan5Back,laser1s,laser2s,laser3s,laser4s,cores;
         double temp = 0;
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
@@ -45,6 +45,7 @@ namespace PBCC
         void HideAll()
         {
             fans.Visibility = Visibility.Collapsed;
+            lasers.Visibility = Visibility.Collapsed;
         }
 
         private void Fan1_Click(object sender, RoutedEventArgs e)
@@ -131,6 +132,115 @@ namespace PBCC
                 Fan1.Background=Brushes.Yellow;
             }
         }
+
+        async private void laser2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!laser2s)
+            {
+                laser2.IsEnabled = false;
+                while (laser2.Opacity <= 1)
+                {
+                    laser2.Opacity += 0.01;
+                    await Task.Delay(30);
+                }
+                laser2.IsEnabled = true;
+                laser2s = true;
+            }
+            else
+            {
+                laser2.IsEnabled = false;
+                while (laser2.Opacity >= 0.2)
+                {
+
+                    laser2.Opacity -= 0.01;
+                    await Task.Delay(30);
+                }
+                laser2.IsEnabled = true;
+                laser2s = false;
+            }
+        }
+
+        async private void laser3_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!laser3s)
+            {
+                laser3.IsEnabled = false;
+                while (laser3.Opacity <= 1)
+                {
+                    laser3.Opacity += 0.01;
+                    await Task.Delay(30);
+                }
+                laser3.IsEnabled = true;
+                laser3s = true;
+            }
+            else
+            {
+                laser3.IsEnabled = false;
+                while (laser3.Opacity >= 0.2)
+                {
+
+                    laser3.Opacity -= 0.01;
+                    await Task.Delay(30);
+                }
+                laser3.IsEnabled = true;
+                laser3s = false;
+            }
+        }
+
+        async private void laser4_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!laser4s)
+            {
+                laser4.IsEnabled = false;
+                while (laser4.Opacity <= 1)
+                {
+                    laser4.Opacity += 0.01;
+                    await Task.Delay(30);
+                }
+                laser4.IsEnabled = true;
+                laser4s = true;
+            }
+            else
+            {
+                laser4.IsEnabled = false;
+                while (laser4.Opacity >= 0.2)
+                {
+
+                    laser4.Opacity -= 0.01;
+                    await Task.Delay(30);
+                }
+                laser4.IsEnabled = true;
+                laser4s = false;
+            }
+        }
+
+        async private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!cores)
+            {
+                core.IsEnabled = false;
+                while (core.Opacity <= 1)
+                {
+                    core.Opacity += 0.01;
+                    await Task.Delay(60);
+                }
+                core.IsEnabled = true;
+                cores = true;
+            }
+            else
+            {
+                core.IsEnabled = false;
+                while (core.Opacity >= 0.5)
+                {
+
+                    core.Opacity -= 0.01;
+                    await Task.Delay(60);
+                }
+                core.IsEnabled = true;
+                cores = false;
+            }
+        }
+
         private void Fan2_Tick(object sender, EventArgs e)
         {
             if (!fan2Back)
@@ -160,7 +270,8 @@ namespace PBCC
 
         private void Laser_Click(object sender, RoutedEventArgs e)
         {
-
+            HideAll();
+            lasers.Visibility = Visibility.Visible;
         }
 
         async private void laser1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -251,12 +362,17 @@ namespace PBCC
         }
         private void tempChange_Tick(object sender, EventArgs e)
         {
-            temp++;
-            temp -= Fan1Prog.Value / 600;
-            temp -= Fan2Prog.Value / 600;
-            temp -= Fan3Prog.Value / 600;
-            temp -= Fan4Prog.Value / 600;
-            temp -= Fan5Prog.Value / 600;
+            temp+=1.5;
+            temp -= (Fan1Prog.Value / 600)*1.5;
+            temp -= (Fan2Prog.Value / 600)*1.5;
+            temp -= (Fan3Prog.Value / 600)* 1.5;
+            temp -= (Fan4Prog.Value / 600) * 1.5;
+            temp -= (Fan5Prog.Value / 600) * 1.5;
+            if (laser1s) temp += 1.25;
+            if (laser2s) temp += 1.25;
+            if (laser3s) temp += 1.25;
+            if (laser4s) temp += 1.25;
+            if (cores) temp += 1.25;
             Temp.Text = Math.Round(temp).ToString();
         }
     }

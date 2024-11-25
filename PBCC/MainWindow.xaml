@@ -26,18 +26,18 @@
         <Grid Height="400" Width="400" Name="lasers">
             
             <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Right" Name="laser1" Opacity="0.2" Cursor="Hand" MouseLeftButtonDown="laser1_MouseLeftButtonDown"/>
-            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Left" Name="laser2" Opacity="0.2" Cursor="Hand"/>
-            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="laser3" Margin="0,0,-190,0" Opacity="0.2" Cursor="Hand">
+            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Left" Name="laser2" Opacity="0.2" Cursor="Hand" MouseLeftButtonDown="laser2_MouseLeftButtonDown"/>
+            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Name="laser3" Margin="0,0,-190,0" Opacity="0.2" Cursor="Hand" MouseLeftButtonDown="laser3_MouseLeftButtonDown">
                 <Image.RenderTransform>
                     <RotateTransform Angle="-90"/>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Center" VerticalAlignment="Top" Name="laser4" Margin="0,0,-210,0" Opacity="0.2" Cursor="Hand">
+            <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Center" VerticalAlignment="Top" Name="laser4" Margin="0,0,-210,0" Opacity="0.2" Cursor="Hand" MouseLeftButtonDown="laser4_MouseLeftButtonDown">
                 <Image.RenderTransform>
                     <RotateTransform Angle="90"/>
                 </Image.RenderTransform>
             </Image>
-            <Image Source="/images/core.png" Height="100" Width="100" Cursor="Hand"/>
+            <Image Source="/images/core.png" Height="100" Width="100" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown" Name="core" Opacity="0.5"/>
         </Grid>
     </Grid>
 </Window>
