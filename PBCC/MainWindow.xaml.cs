@@ -20,6 +20,7 @@ namespace PBCC
         bool fan1Back, fan2Back, fan3Back, fan4Back, fan5Back,laser1s,laser2s,laser3s,laser4s,cores;
         double temp = 0;
         int state = 0;
+        int reactorPower = 1;
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
         DispatcherTimer fan3 = new DispatcherTimer();
@@ -51,6 +52,7 @@ namespace PBCC
         {
             fans.Visibility = Visibility.Collapsed;
             lasers.Visibility = Visibility.Collapsed;
+            rp.Visibility = Visibility.Collapsed;
             RP.IsEnabled= false;
             Laser.IsEnabled= false;
             Fans.IsEnabled= false;
@@ -233,9 +235,11 @@ namespace PBCC
             }
         }
 
-        private void RP_Click(object sender, RoutedEventArgs e)
+        async private void RP_Click(object sender, RoutedEventArgs e)
         {
-            
+            HideAll();
+            await Task.Delay(10000);
+            rp.Visibility = Visibility.Visible;
         }
 
         async private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -267,26 +271,34 @@ namespace PBCC
 
         private void rp1_Click(object sender, RoutedEventArgs e)
         {
-            vis.Interval = TimeSpan.FromMilliseconds(1000);
+            vis.Interval =  TimeSpan.FromMilliseconds(1000);
             allDarkRed();
+            rp1.Background=Brushes.Red;
+            reactorPower = 1;
         }
 
         private void rp2_Click(object sender, RoutedEventArgs e)
         {
             vis.Interval = TimeSpan.FromMilliseconds(500);
             allDarkRed();
+            rp2.Background = Brushes.Red;
+            reactorPower = 2;
         }
 
         private void rp3_Click(object sender, RoutedEventArgs e)
         {
             vis.Interval = TimeSpan.FromMilliseconds(200);
             allDarkRed();
+            rp3.Background = Brushes.Red;
+            reactorPower = 3;
         }
 
         private void rp4_Click(object sender, RoutedEventArgs e)
         {
             vis.Interval = TimeSpan.FromMilliseconds(75);
             allDarkRed();
+            rp4.Background = Brushes.Red;
+            reactorPower = 4;
         }
 
         private void Fan2_Tick(object sender, EventArgs e)
@@ -422,6 +434,9 @@ namespace PBCC
             if (laser3s) temp += 1.25;
             if (laser4s) temp += 1.25;
             if (cores) temp += 1.25;
+            if (reactorPower == 2) temp += 1;
+            if (reactorPower == 3) temp += 3;
+            if (reactorPower == 4) temp += 6;
             Temp.Text = Math.Round(temp).ToString();
         }
         private void RPvis_Tick(object sender, EventArgs e)

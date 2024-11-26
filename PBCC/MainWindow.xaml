@@ -42,7 +42,7 @@
             </Image>
             <Image Source="/images/core.png" Height="100" Width="100" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown" Name="core" Opacity="0.5"/>
         </Grid>
-        <Grid Height="100" Width="200">
+        <Grid Height="100" Width="200" Name="rp" Visibility="Collapsed">
             <Button Height="50" Width="50" HorizontalAlignment="Left" Content="1" FontSize="30" Background="Red" VerticalAlignment="Top" Name="rp1" Click="rp1_Click"/>
             <Button Height="50" Width="50" HorizontalAlignment="Left" Content="2" FontSize="30" Background="DarkRed" Margin="50,0,0,0" VerticalAlignment="Top" Name="rp2" Click="rp2_Click"/>
             <Button Height="50" Width="50" HorizontalAlignment="Left" Content="3" FontSize="30" Background="DarkRed" Margin="100,0,0,0" VerticalAlignment="Top" Name="rp3" Click="rp3_Click"/>
