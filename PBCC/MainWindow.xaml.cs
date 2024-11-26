@@ -56,7 +56,9 @@ namespace PBCC
             RP.IsEnabled= false;
             Laser.IsEnabled= false;
             Fans.IsEnabled= false;
+            Walk.Visibility = Visibility.Visible;
             for (walk.Value = 0; walk.Value != walk.Maximum; walk.Value++) await Task.Delay(100);
+            Walk.Visibility = Visibility.Hidden;
             RP.IsEnabled = true;
             Laser.IsEnabled = true;
             Fans.IsEnabled = true;
@@ -329,9 +331,10 @@ namespace PBCC
             fans.Visibility = Visibility.Visible;
         }
 
-        private void Laser_Click(object sender, RoutedEventArgs e)
+        async private void Laser_Click(object sender, RoutedEventArgs e)
         {
             HideAll();
+            await Task.Delay(10000);
             lasers.Visibility = Visibility.Visible;
         }
 

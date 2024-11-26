@@ -11,7 +11,7 @@
         <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,70" Content="Reactor laser" FontSize="20" Name="Laser" Click="Laser_Click"/>
         <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,130" Content="Reactor power" FontSize="20" Name="RP" Click="RP_Click"/>
         <ProgressBar Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,40" Name="walk"></ProgressBar>
-        <TextBlock Text="Walking..." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,40" FontSize="20"/>
+        <TextBlock Text="Walking..." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,40" FontSize="20" Name="Walk" Visibility="Hidden"/>
         <TextBlock Text="0" VerticalAlignment="Bottom" Name="Temp" FontSize="30"/>
         <Grid Height="400" Width="400" Name="fans" Visibility="Collapsed">
             <Label Content="Fans control" FontSize="20"/>
