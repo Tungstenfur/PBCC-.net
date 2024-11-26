@@ -9,6 +9,9 @@
     <Grid>
         <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10" Content="Fans control" FontSize="20" Name="Fans" Click="Fans_Click"/>
         <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,70" Content="Reactor laser" FontSize="20" Name="Laser" Click="Laser_Click"/>
+        <Button Height="50" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,130" Content="Reactor power" FontSize="20" Name="RP" Click="RP_Click"/>
+        <ProgressBar Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,40" Name="walk"></ProgressBar>
+        <TextBlock Text="Walking..." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,40" FontSize="20"/>
         <TextBlock Text="0" VerticalAlignment="Bottom" Name="Temp" FontSize="30"/>
         <Grid Height="400" Width="400" Name="fans" Visibility="Collapsed">
             <Label Content="Fans control" FontSize="20"/>
@@ -23,7 +26,7 @@
             <Button Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,250,0,0" Background="Red" Name="Fan5" Click="Fan5_Click"/>
             <ProgressBar Height="30" VerticalAlignment="Top" Margin="0,250,0,0" HorizontalAlignment="Right" Width="350" Maximum="600" Name="Fan5Prog"/>
         </Grid>
-        <Grid Height="400" Width="400" Name="lasers">
+        <Grid Height="400" Width="400" Name="lasers" Visibility="Collapsed">
             
             <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Right" Name="laser1" Opacity="0.2" Cursor="Hand" MouseLeftButtonDown="laser1_MouseLeftButtonDown"/>
             <Image Source="/images/laser.png" Height="10" HorizontalAlignment="Left" Name="laser2" Opacity="0.2" Cursor="Hand" MouseLeftButtonDown="laser2_MouseLeftButtonDown"/>
@@ -38,6 +41,16 @@
                 </Image.RenderTransform>
             </Image>
             <Image Source="/images/core.png" Height="100" Width="100" Cursor="Hand" MouseLeftButtonDown="Image_MouseLeftButtonDown" Name="core" Opacity="0.5"/>
+        </Grid>
+        <Grid Height="100" Width="200">
+            <Button Height="50" Width="50" HorizontalAlignment="Left" Content="1" FontSize="30" Background="Red" VerticalAlignment="Top" Name="rp1" Click="rp1_Click"/>
+            <Button Height="50" Width="50" HorizontalAlignment="Left" Content="2" FontSize="30" Background="DarkRed" Margin="50,0,0,0" VerticalAlignment="Top" Name="rp2" Click="rp2_Click"/>
+            <Button Height="50" Width="50" HorizontalAlignment="Left" Content="3" FontSize="30" Background="DarkRed" Margin="100,0,0,0" VerticalAlignment="Top" Name="rp3" Click="rp3_Click"/>
+            <Button Height="50" Width="50" HorizontalAlignment="Left" Content="4" FontSize="30" Background="DarkRed" Margin="150,0,0,0" VerticalAlignment="Top" Name="rp4" Click="rp4_Click"/>
+            <Image Source="/images/rpON.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="state0"/>
+            <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="50,0,0,0" Name="state1"/>
+            <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,0" Name="state2"/>
+            <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="150,0,0,0" Name="state3"/>
         </Grid>
     </Grid>
 </Window>

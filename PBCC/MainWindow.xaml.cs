@@ -19,12 +19,14 @@ namespace PBCC
     {
         bool fan1Back, fan2Back, fan3Back, fan4Back, fan5Back,laser1s,laser2s,laser3s,laser4s,cores;
         double temp = 0;
+        int state = 0;
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
         DispatcherTimer fan3 = new DispatcherTimer();
         DispatcherTimer fan4 = new DispatcherTimer();
         DispatcherTimer fan5 = new DispatcherTimer();
         DispatcherTimer tempChange = new DispatcherTimer();
+        DispatcherTimer vis = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,20 +36,37 @@ namespace PBCC
             fan3.Tick += new EventHandler(Fan3_Tick);
             fan4.Tick += new EventHandler(Fan4_Tick);
             fan5.Tick += new EventHandler(Fan5_Tick);
+            vis.Tick += new EventHandler(RPvis_Tick);
             fan1.Interval = TimeSpan.FromMilliseconds(100);
             fan2.Interval = TimeSpan.FromMilliseconds(100);
             fan3.Interval = TimeSpan.FromMilliseconds(100);
             fan4.Interval = TimeSpan.FromMilliseconds(100);
             fan5.Interval = TimeSpan.FromMilliseconds(100);
+            vis.Interval = TimeSpan.FromMilliseconds(1000);
             tempChange.Interval = TimeSpan.FromSeconds(1);
             tempChange.Start();
+            vis.Start();
         }
-        void HideAll()
+        async void HideAll()
         {
             fans.Visibility = Visibility.Collapsed;
             lasers.Visibility = Visibility.Collapsed;
+            RP.IsEnabled= false;
+            Laser.IsEnabled= false;
+            Fans.IsEnabled= false;
+            for (walk.Value = 0; walk.Value != walk.Maximum; walk.Value++) await Task.Delay(100);
+            RP.IsEnabled = true;
+            Laser.IsEnabled = true;
+            Fans.IsEnabled = true;
         }
-
+        void allDarkRed()
+        {
+            rp1.Background=Brushes.DarkRed;
+            rp2.Background=Brushes.DarkRed;
+            rp3.Background=Brushes.DarkRed;
+            rp4.Background=Brushes.DarkRed;
+        }
+            
         private void Fan1_Click(object sender, RoutedEventArgs e)
         {
             if (Fan1Prog.Value == 0)
@@ -214,6 +233,11 @@ namespace PBCC
             }
         }
 
+        private void RP_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         async private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (!cores)
@@ -241,6 +265,30 @@ namespace PBCC
             }
         }
 
+        private void rp1_Click(object sender, RoutedEventArgs e)
+        {
+            vis.Interval = TimeSpan.FromMilliseconds(1000);
+            allDarkRed();
+        }
+
+        private void rp2_Click(object sender, RoutedEventArgs e)
+        {
+            vis.Interval = TimeSpan.FromMilliseconds(500);
+            allDarkRed();
+        }
+
+        private void rp3_Click(object sender, RoutedEventArgs e)
+        {
+            vis.Interval = TimeSpan.FromMilliseconds(200);
+            allDarkRed();
+        }
+
+        private void rp4_Click(object sender, RoutedEventArgs e)
+        {
+            vis.Interval = TimeSpan.FromMilliseconds(75);
+            allDarkRed();
+        }
+
         private void Fan2_Tick(object sender, EventArgs e)
         {
             if (!fan2Back)
@@ -262,9 +310,10 @@ namespace PBCC
             }
         }
 
-        private void Fans_Click(object sender, RoutedEventArgs e)
+        async private void Fans_Click(object sender, RoutedEventArgs e)
         {
             HideAll();
+            await Task.Delay(10000);
             fans.Visibility = Visibility.Visible;
         }
 
@@ -374,6 +423,42 @@ namespace PBCC
             if (laser4s) temp += 1.25;
             if (cores) temp += 1.25;
             Temp.Text = Math.Round(temp).ToString();
+        }
+        private void RPvis_Tick(object sender, EventArgs e)
+        {
+            if (state == 0)
+            {
+                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
+                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state = 1;
+            }
+            else if (state == 1)
+            {
+                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
+                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state=2;
+            }
+            else if(state == 2)
+            {
+                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
+                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state = 3;
+            }
+            else if (state == 3)
+            {
+                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
+                state = 0;
+            }
+
         }
     }
 }
