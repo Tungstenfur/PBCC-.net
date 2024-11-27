@@ -47,7 +47,7 @@
             <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,0" Name="state2"/>
             <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="150,0,0,0" Name="state3"/>
         </Grid>
-        <Grid Height="300" Width="600" HorizontalAlignment="Right" Name="Coolant">
+        <Grid Height="300" Width="600" HorizontalAlignment="Right" Name="Coolant" Cursor="">
             
         </Grid>
         <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10" Content="Fans control" FontSize="20" Name="Fans" Click="Fans_Click"/>
