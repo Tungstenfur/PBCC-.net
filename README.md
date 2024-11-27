@@ -2,7 +2,7 @@
 ## What is this
 This remake of basic mechanics from Roblox game pinewood computer core into .net application
 ## TODO:
-- **Move fanback and laser status into an array**
+- **Move ~~fanback~~ and laser status into an array**
 - Optimize RP visuals
 - Coolant, ~~RP~~
 - Emergency coolant
