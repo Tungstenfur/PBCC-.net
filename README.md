@@ -1,5 +1,6 @@
 # PBCC
 ## TODO:
+- **Move fanback and laser status into an array**
 - Coolant, RP
 - Emergency coolant
 - Meltdown/Freezedown
