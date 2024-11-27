@@ -17,7 +17,8 @@ namespace PBCC
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool fan1Back, fan2Back, fan3Back, fan4Back, fan5Back,laser1s,laser2s,laser3s,laser4s,cores;
+        bool[] fanBack =new bool[5];
+        bool laser1s,laser2s,laser3s,laser4s,cores;
         double temp = 0;
         int state = 0;
         int reactorPower = 1;
@@ -75,12 +76,12 @@ namespace PBCC
         {
             if (Fan1Prog.Value == 0)
             {
-                fan1Back=false;
+                fanBack[0]=false;
                 fan1.Start();
             }
             else if (Fan1Prog.Value == 600)
             {
-                fan1Back=true;
+                fanBack[0]=true;
                 fan1.Start();
             }
         }
@@ -88,12 +89,12 @@ namespace PBCC
         {
             if (Fan2Prog.Value == 0)
             {
-                fan2Back = false;
+                fanBack[1] = false;
                 fan2.Start();
             }
             else if (Fan2Prog.Value == 600)
             {
-                fan2Back = true;
+                fanBack[1] = true;
                 fan2.Start();
             }
         }
@@ -101,12 +102,12 @@ namespace PBCC
         {
             if (Fan3Prog.Value == 0)
             {
-                fan3Back = false;
+                fanBack[2] = false;
                 fan3.Start();
             }
             else if (Fan3Prog.Value == 600)
             {
-                fan3Back = true;
+                fanBack[2] = true;
                 fan3.Start();
             }
         }
@@ -114,12 +115,12 @@ namespace PBCC
         {
             if (Fan4Prog.Value == 0)
             {
-                fan4Back = false;
+                fanBack[3] = false;
                 fan4.Start();
             }
             else if (Fan4Prog.Value == 600)
             {
-                fan4Back = true;
+                fanBack[3] = true;
                 fan4.Start();
             }
         }
@@ -127,18 +128,18 @@ namespace PBCC
         {
             if (Fan5Prog.Value == 0)
             {
-                fan5Back = false;
+                fanBack[4] = false;
                 fan5.Start();
             }
             else if (Fan5Prog.Value == 600)
             {
-                fan5Back = true;
+                fanBack[4] = true;
                 fan5.Start();
             }
         }
         private void Fan1_Tick(object sender, EventArgs e)
         {
-            if(!fan1Back)
+            if (!fanBack[0])
                 Fan1Prog.Value++;
             else Fan1Prog.Value--;
             if (Fan1Prog.Value == 0)
@@ -305,7 +306,7 @@ namespace PBCC
 
         private void Fan2_Tick(object sender, EventArgs e)
         {
-            if (!fan2Back)
+            if (!fanBack[1])
                 Fan2Prog.Value++;
             else Fan2Prog.Value--;
             if (Fan2Prog.Value == 0)
@@ -366,7 +367,7 @@ namespace PBCC
 
         private void Fan3_Tick(object sender, EventArgs e)
         {
-            if (!fan3Back)
+            if (!fanBack[2])
                 Fan3Prog.Value++;
             else Fan3Prog.Value--;
             if (Fan3Prog.Value == 0)
@@ -384,9 +385,15 @@ namespace PBCC
                 Fan3.Background = Brushes.Yellow;
             }
         }
+
+        private void Coolant_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Fan4_Tick(object sender, EventArgs e)
         {
-            if (!fan4Back)
+            if (!fanBack[3])
                 Fan4Prog.Value++;
             else Fan4Prog.Value--;
             if (Fan4Prog.Value == 0)
@@ -406,7 +413,7 @@ namespace PBCC
         }
         private void Fan5_Tick(object sender, EventArgs e)
         {
-            if (!fan5Back)
+            if (!fanBack[4])
                 Fan5Prog.Value++;
             else Fan5Prog.Value--;
             if (Fan5Prog.Value == 0)
