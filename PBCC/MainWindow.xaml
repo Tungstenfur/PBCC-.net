@@ -48,7 +48,7 @@
             <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="150,0,0,0" Name="state3"/>
         </Grid>
         <Grid Height="300" Width="600" HorizontalAlignment="Right" Name="Coolant" Cursor="">
-            
+            <Button Content="Coolant" FontSize="20" Width="100" Background="Red" Name="CoolantSwitch" Click="CoolantSwitch_Click" HorizontalAlignment="Left"></Button>
         </Grid>
         <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10" Content="Fans control" FontSize="20" Name="Fans" Click="Fans_Click"/>
         <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50" Content="Reactor laser" FontSize="20" Name="Laser" Click="Laser_Click"/>

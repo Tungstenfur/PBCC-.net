@@ -391,6 +391,21 @@ namespace PBCC
 
         }
 
+        async private void CoolantSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            if (CoolantSwitch.Background == Brushes.Red)
+            {
+                CoolantSwitch.Background = Brushes.Yellow;
+                await Task.Delay(5000);
+                CoolantSwitch.Background = Brushes.Lime;
+            }
+            else if (CoolantSwitch.Background == Brushes.Lime) {
+                CoolantSwitch.Background = Brushes.Yellow;
+                await Task.Delay(5000);
+                CoolantSwitch.Background = Brushes.Red;
+            }
+        }
+
         private void Fan4_Tick(object sender, EventArgs e)
         {
             if (!fanBack[3])
