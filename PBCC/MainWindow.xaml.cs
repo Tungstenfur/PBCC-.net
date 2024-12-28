@@ -500,5 +500,10 @@ namespace PBCC
             }
 
         }
+
+        private void Production_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
