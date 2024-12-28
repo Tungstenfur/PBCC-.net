@@ -8,6 +8,11 @@ This remake of basic mechanics from Roblox game pinewood computer core into .net
 - Emergency coolant
 - Meltdown/Freezedown
 - Disasters
+## Dowloading
+#### Download latest
+- Go to actions
+- Click on the latest workflow run
+- Go to bottom of the page and download app.zip artifact
 ## Buid
 #### Requirements
 - Visual studio 2022
