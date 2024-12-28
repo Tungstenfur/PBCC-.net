@@ -23,5 +23,8 @@ jobs:
         - run: dotnet restore ${{ env.PROJECT_PATH }}
   
         - run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
-  
-        - run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --self-contained -r win-x64 -p:PublishSingleFile=true
+
+        - uses: actions/upload-artifact@v4
+          with:
+            name: App
+            path: bin\Release\net8.0-windows\win-x64
