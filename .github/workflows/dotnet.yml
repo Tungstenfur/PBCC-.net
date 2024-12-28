@@ -27,4 +27,4 @@ jobs:
         - uses: actions/upload-artifact@v4
           with:
             name: App
-            path: bin\Release\net8.0-windows\win-x64
+            path: PBCC\bin\Release\net8.0-windows\win-x64
