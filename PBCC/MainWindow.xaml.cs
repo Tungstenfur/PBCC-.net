@@ -60,7 +60,7 @@ namespace PBCC
                           "Price per GWh: x$\n" +
                           "Balance: x$\n";
         }
-        async void HideAll()
+        async Task HideAll()
         {
             fans.Visibility = Visibility.Collapsed;
             lasers.Visibility = Visibility.Collapsed;
@@ -257,8 +257,7 @@ namespace PBCC
 
         async private void RP_Click(object sender, RoutedEventArgs e)
         {
-            HideAll();
-            await Task.Delay(10000);
+            await HideAll();
             rp.Visibility = Visibility.Visible;
         }
 
@@ -344,15 +343,13 @@ namespace PBCC
 
         async private void Fans_Click(object sender, RoutedEventArgs e)
         {
-            HideAll();
-            await Task.Delay(10000);
-            fans.Visibility = Visibility.Visible;
+            await HideAll();
+            production.Visibility = Visibility.Visible;
         }
 
         async private void Laser_Click(object sender, RoutedEventArgs e)
         {
-            HideAll();
-            await Task.Delay(10000);
+            await HideAll();
             lasers.Visibility = Visibility.Visible;
         }
 
@@ -403,9 +400,10 @@ namespace PBCC
             }
         }
 
-        private void Coolant_Click(object sender, RoutedEventArgs e)
+        async private void Coolant_Click(object sender, RoutedEventArgs e)
         {
-
+            await HideAll();
+            coolant.Visibility = Visibility.Visible;
         }
 
         async private void CoolantSwitch_Click(object sender, RoutedEventArgs e)
@@ -518,9 +516,10 @@ namespace PBCC
 
         }
 
-        private void Production_OnClick(object sender, RoutedEventArgs e)
+        async private void Production_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            await HideAll();
+            production.Visibility = Visibility.Visible;
         }
     }
 }
