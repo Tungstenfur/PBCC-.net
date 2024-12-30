@@ -47,17 +47,17 @@
             <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="100,0,0,0" Name="state2"/>
             <Image Source="/images/rpOFF.png" Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="150,0,0,0" Name="state3"/>
         </Grid>
-        <Grid Height="300" Width="600" HorizontalAlignment="Right" Name="Coolant" Cursor="">
+        <Grid Height="300" Width="600" HorizontalAlignment="Right" Name="Coolant" Visibility="Collapsed"><!--TODO-->
             <Button Content="Coolant" FontSize="20" Width="100" Background="Red" Name="CoolantSwitch" Click="CoolantSwitch_Click" HorizontalAlignment="Left"></Button>
         </Grid>
-        <Grid Name="production" Width="400" Height="400">
+        <Grid Name="production" Width="400" Height="400" Visibility="Collapsed">
             <TextBlock Name="output" FontSize="15"></TextBlock>
         </Grid>
         <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Content="Fans control" FontSize="20" Name="Fans" Click="Fans_Click"/>
         <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0" Content="Reactor laser" FontSize="20" Name="Laser" Click="Laser_Click"/>
         <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,90,0,0" Content="Reactor power" FontSize="20" Name="RP" Click="RP_Click"/>
         <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,130,0,0" Content="Coolant" FontSize="20" Name="coolant" Click="Coolant_Click"/>
-        <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,180,0,0" Content="Production" FontSize="20" Name="Production" Click="Production_OnClick"/>
+        <Button Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,170,0,0" Content="Production" FontSize="20" Name="Production" Click="Production_OnClick"/>
         <ProgressBar Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,40" Name="walk"></ProgressBar>
         <TextBlock Text="Walking..." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,40" FontSize="20" Name="Walk" Visibility="Hidden"/>
         <TextBlock Text="0" VerticalAlignment="Bottom" Name="Temp" FontSize="30"/>

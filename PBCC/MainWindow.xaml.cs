@@ -18,7 +18,7 @@ namespace PBCC
     public partial class MainWindow : Window
     {
         bool[] fanBack =new bool[5];
-        bool laser1s,laser2s,laser3s,laser4s,cores;
+        bool[] laser = new bool[5];
         double temp = 0;
         int state = 0;
         int reactorPower = 1;
@@ -48,21 +48,38 @@ namespace PBCC
             tempChange.Interval = TimeSpan.FromSeconds(1);
             tempChange.Start();
             vis.Start();
+            output.Text = "Power production: xGW\n" +
+                          "Power consumption: \n" +
+                          "\tFans: xGW\n" +
+                          "\tLasers: xGW\n" +
+                          "\tReactor: xGW\n" +
+                          "\tCoolant: xGW\n" +
+                          "\tAdditional: xGW\n" +
+                          "\tTotal: xGW\n" +
+                          "Energy balance: xGW\n" +
+                          "Price per GWh: x$\n" +
+                          "Balance: x$\n";
         }
         async void HideAll()
         {
             fans.Visibility = Visibility.Collapsed;
             lasers.Visibility = Visibility.Collapsed;
             rp.Visibility = Visibility.Collapsed;
+            production.Visibility=Visibility.Collapsed;
+            Coolant.Visibility = Visibility.Collapsed;
             RP.IsEnabled= false;
             Laser.IsEnabled= false;
             Fans.IsEnabled= false;
+            coolant.IsEnabled = false;
+            Production.IsEnabled = false;
             Walk.Visibility = Visibility.Visible;
             for (walk.Value = 0; walk.Value != walk.Maximum; walk.Value++) await Task.Delay(100);
             Walk.Visibility = Visibility.Hidden;
             RP.IsEnabled = true;
             Laser.IsEnabled = true;
             Fans.IsEnabled = true;
+            coolant.IsEnabled = true;
+            Production.IsEnabled = true;
         }
         void allDarkRed()
         {
@@ -159,7 +176,7 @@ namespace PBCC
 
         async private void laser2_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!laser2s)
+            if (!laser[1])
             {
                 laser2.IsEnabled = false;
                 while (laser2.Opacity <= 1)
@@ -168,7 +185,7 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser2.IsEnabled = true;
-                laser2s = true;
+                laser[1] = true;
             }
             else
             {
@@ -180,13 +197,13 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser2.IsEnabled = true;
-                laser2s = false;
+                laser[1] = false;
             }
         }
 
         async private void laser3_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!laser3s)
+            if (!laser[2])
             {
                 laser3.IsEnabled = false;
                 while (laser3.Opacity <= 1)
@@ -195,7 +212,7 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser3.IsEnabled = true;
-                laser3s = true;
+                laser[2] = true;
             }
             else
             {
@@ -207,13 +224,13 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser3.IsEnabled = true;
-                laser3s = false;
+                laser[2] = false;
             }
         }
 
         async private void laser4_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!laser4s)
+            if (!laser[3])
             {
                 laser4.IsEnabled = false;
                 while (laser4.Opacity <= 1)
@@ -222,7 +239,7 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser4.IsEnabled = true;
-                laser4s = true;
+                laser[3] = true;
             }
             else
             {
@@ -234,7 +251,7 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser4.IsEnabled = true;
-                laser4s = false;
+                laser[3] = false;
             }
         }
 
@@ -247,7 +264,7 @@ namespace PBCC
 
         async private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!cores)
+            if (!laser[4])
             {
                 core.IsEnabled = false;
                 while (core.Opacity <= 1)
@@ -256,7 +273,7 @@ namespace PBCC
                     await Task.Delay(60);
                 }
                 core.IsEnabled = true;
-                cores = true;
+                laser[4] = true;
             }
             else
             {
@@ -268,7 +285,7 @@ namespace PBCC
                     await Task.Delay(60);
                 }
                 core.IsEnabled = true;
-                cores = false;
+                laser[4] = false;
             }
         }
 
@@ -341,7 +358,7 @@ namespace PBCC
 
         async private void laser1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!laser1s)
+            if (!laser[0])
             {
                 laser1.IsEnabled= false;
                 while (laser1.Opacity <= 1)
@@ -350,7 +367,7 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser1.IsEnabled = true;
-                laser1s =true;
+                laser[0] =true;
             }
             else{
                 laser1.IsEnabled = false;
@@ -361,7 +378,7 @@ namespace PBCC
                     await Task.Delay(30);
                 }
                 laser1.IsEnabled = true;
-                laser1s = false;
+                laser[0] = false;
             }
         }
 
@@ -454,11 +471,11 @@ namespace PBCC
             temp -= (Fan3Prog.Value / 600)* 1.5;
             temp -= (Fan4Prog.Value / 600) * 1.5;
             temp -= (Fan5Prog.Value / 600) * 1.5;
-            if (laser1s) temp += 1.25;
-            if (laser2s) temp += 1.25;
-            if (laser3s) temp += 1.25;
-            if (laser4s) temp += 1.25;
-            if (cores) temp += 1.25;
+            if (laser[0]) temp += 1.25;
+            if (laser[1]) temp += 1.25;
+            if (laser[2]) temp += 1.25;
+            if (laser[3]) temp += 1.25;
+            if (laser[4]) temp += 1.25;
             if (reactorPower == 2) temp += 1;
             if (reactorPower == 3) temp += 3;
             if (reactorPower == 4) temp += 6;
