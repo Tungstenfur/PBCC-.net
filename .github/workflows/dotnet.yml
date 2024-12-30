@@ -23,8 +23,11 @@ jobs:
         - run: dotnet restore ${{ env.PROJECT_PATH }}
   
         - run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
-        - run: tree PBCC
         - uses: actions/upload-artifact@v4
           with:
             name: App
             path: PBCC\bin\Release\net8.0-windows
+        - uses: actions/upload-artifact@v4
+          with:
+            name: Source code
+            path: PBCC
