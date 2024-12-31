@@ -29,7 +29,8 @@ namespace PBCC
         DispatcherTimer fan5 = new DispatcherTimer();
         DispatcherTimer tempChange = new DispatcherTimer();
         DispatcherTimer vis = new DispatcherTimer();
-        float Cfans, Clasers, Creactor, Ccoolant, Cadditional, Ctotal, Mbalance, price, prod;
+        DispatcherTimer productionUpdate = new DispatcherTimer();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace PBCC
             fan4.Tick += new EventHandler(Fan4_Tick);
             fan5.Tick += new EventHandler(Fan5_Tick);
             vis.Tick += new EventHandler(RPvis_Tick);
+            productionUpdate.Tick += new EventHandler(productionUpdate_Tick);
             fan1.Interval = TimeSpan.FromMilliseconds(100);
             fan2.Interval = TimeSpan.FromMilliseconds(100);
             fan3.Interval = TimeSpan.FromMilliseconds(100);
@@ -47,24 +49,18 @@ namespace PBCC
             fan5.Interval = TimeSpan.FromMilliseconds(100);
             vis.Interval = TimeSpan.FromMilliseconds(1000);
             tempChange.Interval = TimeSpan.FromSeconds(1);
+            productionUpdate.Interval = TimeSpan.FromSeconds(5);
             tempChange.Start();
             vis.Start();
 
-            string powerInfo()
-            {
-                return "Power production: xGW\n" + //TODO: Add variables
-                    "Power consumption: \n" +
-                    "\tFans: xGW\n" +
-                    "\tLasers: xGW\n" +
-                    "\tReactor: xGW\n" +
-                    "\tCoolant: xGW\n" +
-                    "\tAdditional: xGW\n" +
-                    "\tTotal: xGW\n" +
-                    "Energy balance: xGW\n" +
-                    "Price per GWh: x$\n" +
-                    "Balance: x$\n";
-            }
+            
         }
+
+        private void productionUpdate_Tick(object? sender, EventArgs e)
+        {
+            
+        }
+
         async Task HideAll()
         {
             fans.Visibility = Visibility.Collapsed;
