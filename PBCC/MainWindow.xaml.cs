@@ -29,6 +29,7 @@ namespace PBCC
         DispatcherTimer fan5 = new DispatcherTimer();
         DispatcherTimer tempChange = new DispatcherTimer();
         DispatcherTimer vis = new DispatcherTimer();
+        float Cfans, Clasers, Creactor, Ccoolant, Cadditional, Ctotal, Mbalance, price, prod;
         public MainWindow()
         {
             InitializeComponent();
@@ -48,17 +49,21 @@ namespace PBCC
             tempChange.Interval = TimeSpan.FromSeconds(1);
             tempChange.Start();
             vis.Start();
-            output.Text = "Power production: xGW\n" +
-                          "Power consumption: \n" +
-                          "\tFans: xGW\n" +
-                          "\tLasers: xGW\n" +
-                          "\tReactor: xGW\n" +
-                          "\tCoolant: xGW\n" +
-                          "\tAdditional: xGW\n" +
-                          "\tTotal: xGW\n" +
-                          "Energy balance: xGW\n" +
-                          "Price per GWh: x$\n" +
-                          "Balance: x$\n";
+
+            string powerInfo()
+            {
+                return "Power production: xGW\n" + //TODO: Add variables
+                    "Power consumption: \n" +
+                    "\tFans: xGW\n" +
+                    "\tLasers: xGW\n" +
+                    "\tReactor: xGW\n" +
+                    "\tCoolant: xGW\n" +
+                    "\tAdditional: xGW\n" +
+                    "\tTotal: xGW\n" +
+                    "Energy balance: xGW\n" +
+                    "Price per GWh: x$\n" +
+                    "Balance: x$\n";
+            }
         }
         async Task HideAll()
         {
