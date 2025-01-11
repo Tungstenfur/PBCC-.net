@@ -23,6 +23,7 @@ namespace PBCC
         double temp = 0;
         int state = 0;
         int reactorPower = 1;
+        string info;
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
         DispatcherTimer fan3 = new DispatcherTimer();
@@ -480,6 +481,9 @@ namespace PBCC
             if (reactorPower == 3) temp += 3;
             if (reactorPower == 4) temp += 6;
             Temp.Text = Math.Round(temp).ToString();
+            energy.update(laser, new int[] { (int)Fan1Prog.Value, (int)Fan2Prog.Value, (int)Fan3Prog.Value, (int)Fan4Prog.Value, (int)Fan5Prog.Value }, CoolantSwitch.Background == Brushes.Lime, reactorPower);
+            info=energy.powerInfo();
+            output.Text = info;
         }
         private void RPvis_Tick(object sender, EventArgs e)
         {
