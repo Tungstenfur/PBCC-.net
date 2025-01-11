@@ -347,7 +347,7 @@ namespace PBCC
         async private void Fans_Click(object sender, RoutedEventArgs e)
         {
             await HideAll();
-            production.Visibility = Visibility.Visible;
+            fans.Visibility = Visibility.Visible;
         }
 
         async private void Laser_Click(object sender, RoutedEventArgs e)
@@ -406,7 +406,7 @@ namespace PBCC
         async private void Coolant_Click(object sender, RoutedEventArgs e)
         {
             await HideAll();
-            coolant.Visibility = Visibility.Visible;
+            Coolant.Visibility = Visibility.Visible;
         }
 
         async private void CoolantSwitch_Click(object sender, RoutedEventArgs e)
