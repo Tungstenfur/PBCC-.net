@@ -17,6 +17,7 @@ namespace PBCC
     /// </summary>
     public partial class MainWindow : Window
     {
+        Energy energy = new Energy();
         bool[] fanBack =new bool[5];
         bool[] laser = new bool[5];
         double temp = 0;
