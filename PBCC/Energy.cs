@@ -48,7 +48,10 @@ public class Energy
         Creactor = Math.Round((100+rng.NextDouble()*Math.Pow(reactor*2,3)),1);
         Cadditional = rng.Next(101, 200);
         Clasers= Math.Round(Clasers,1);//Without this it breaks for some reason
+        Cfans= Math.Round(Creactor,1);
         Ctotal = Cfans + Clasers + Creactor + Ccoolant + Cadditional;
         Ctotal = Math.Round(Ctotal,1);
+        Ebal = prod - Ctotal;
+        Mbalance+=Ebal*price;
     }
 }
