@@ -12,6 +12,7 @@ This remake of basic mechanics from Roblox game pinewood computer core into .net
 - Disasters~~
 ## Dowloading
 #### Download latest
+[![Latest](https://github.com/Tungstenfur/PBCC-.net/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Tungstenfur/PBCC-.net/actions/workflows/dotnet.yml)
 - Go to actions
 - Click on the latest workflow run
 - Go to bottom of the page and download app.zip artifact
