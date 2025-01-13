@@ -2,13 +2,14 @@
 ## What is this
 This remake of basic mechanics from Roblox game pinewood computer core into .net application
 ## TODO:
-- ~~**Move fanback and laser status into an array**~~
-- ~~Optimize RP visuals~~
+##### MOVED ONTO [GITHUB PROJECT](https://github.com/users/Tungstenfur/projects/2)
+- Move fanback and laser status into an array
+- Optimize RP visuals
 - Energy selling
-- Coolant, ~~RP~~
+- Coolant, RP
 - Emergency coolant
 - Meltdown/Freezedown
-- Disasters
+- Disasters~~
 ## Dowloading
 #### Download latest
 - Go to actions
@@ -21,6 +22,14 @@ This remake of basic mechanics from Roblox game pinewood computer core into .net
     - .NET 8 individual component
 
 #### Building
+- Clone the repository (`git clone https://github.com/Tungstenfur/PBCC-.net.git`)
 - Open PBCC.sln in VS 22
 - Go to compilation
 - Compile Solution
+### OR
+#### Requirements
+- .NET 8 SDK
+#### Building
+- Clone the repository (`git clone https://github.com/Tungstenfur/PBCC-.net.git`)
+- Open terminal in PBCC-.net/PBCC directory
+- Run `dotnet build`
