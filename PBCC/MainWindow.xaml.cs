@@ -481,7 +481,7 @@ namespace PBCC
             if (reactorPower == 3) temp += 3;
             if (reactorPower == 4) temp += 6;
             Temp.Text = Math.Round(temp).ToString();
-            energy.update(laser, new int[] { (int)Fan1Prog.Value, (int)Fan2Prog.Value, (int)Fan3Prog.Value, (int)Fan4Prog.Value, (int)Fan5Prog.Value }, CoolantSwitch.Background == Brushes.Lime, reactorPower);
+            energy.update(laser, new int[] { (int)Fan1Prog.Value, (int)Fan2Prog.Value, (int)Fan3Prog.Value, (int)Fan4Prog.Value, (int)Fan5Prog.Value }, CoolantSwitch.Background == Brushes.Lime, reactorPower,Convert.ToInt32(temp));
             info=energy.powerInfo();
             output.Text = info;
         }

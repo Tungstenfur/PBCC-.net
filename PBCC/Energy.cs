@@ -4,7 +4,8 @@ namespace PBCC;
 
 public class Energy
 {
-    double Cfans, Clasers, Creactor, Ccoolant, Cadditional, Ctotal, Mbalance, price, prod,Ebal;
+    double Cfans, Clasers, Creactor, Ccoolant, Cadditional, Ctotal, Mbalance, price, prod,Ebal,AbsMbalance;
+    private string MbalanceString;
     Random rng = new Random();
     public string powerInfo()
     {
@@ -18,10 +19,10 @@ public class Energy
                "\tTotal: " + Ctotal + "MW\n" +
                "Energy balance: " + Ebal + "MW\n" +
                "Price per MWh: " + price + "$\n" +
-               "Balance: " + Mbalance + "$\n";
+               "Balance: " + MbalanceString + "$\n";
     }
 
-    public void update(bool[] lasers,int[] fans, bool coolant, int reactor)
+    public void update(bool[] lasers,int[] fans, bool coolant, int reactor, int temperature)
     {
         Cfans = 0;
         Clasers = 0;
@@ -51,7 +52,17 @@ public class Energy
         Cfans= Math.Round(Creactor,1);
         Ctotal = Cfans + Clasers + Creactor + Ccoolant + Cadditional;
         Ctotal = Math.Round(Ctotal,1);
-        Ebal = prod - Ctotal;
+        prod = Math.Round(Math.Pow(4000 + temperature, 1.1)/20);
+        Ebal = Math.Round( prod - Ctotal);;
         Mbalance+=Ebal*price;
+        AbsMbalance=Math.Abs(Mbalance);
+        if (AbsMbalance > 1000 && AbsMbalance < 1000000)
+            MbalanceString = Math.Round(Mbalance / 1000) + "k";
+        else if(AbsMbalance>1000000 && AbsMbalance < 1000000000)
+            MbalanceString = Math.Round(Mbalance / 1000000,1) + "M";
+        else if (AbsMbalance > 1000000000)
+            MbalanceString = Math.Round(Mbalance / 1000000000,1) + "B";
+        else
+            MbalanceString = Mbalance.ToString();   
     }
 }
