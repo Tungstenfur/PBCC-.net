@@ -22,6 +22,8 @@ public class Energy
                "Balance: " + MbalanceString + "$\n";
     }
 
+    //BUG: fans power consumption broken
+    //TODO: Move ins array into color array
     public void update(bool[] lasers,int[] fans, bool coolant, int reactor, int temperature)
     {
         Cfans = 0;

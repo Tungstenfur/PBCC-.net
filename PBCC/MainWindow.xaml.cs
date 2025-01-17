@@ -24,6 +24,7 @@ namespace PBCC
         int state = 0;
         int reactorPower = 1;
         string info;
+        bool triggered = false;
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
         DispatcherTimer fan3 = new DispatcherTimer();
@@ -484,6 +485,16 @@ namespace PBCC
             energy.update(laser, new int[] { (int)Fan1Prog.Value, (int)Fan2Prog.Value, (int)Fan3Prog.Value, (int)Fan4Prog.Value, (int)Fan5Prog.Value }, CoolantSwitch.Background == Brushes.Lime, reactorPower,Convert.ToInt32(temp));
             info=energy.powerInfo();
             output.Text = info;
+            if (temp > 4000 && !triggered)
+            {
+                MessageBox.Show("Meltdown triggered");
+                triggered = true;
+            }
+            else if (temp < -4000 && !triggered)
+            {
+                MessageBox.Show("Freezedown triggered");
+                triggered = true;
+            }
         }
         private void RPvis_Tick(object sender, EventArgs e)
         {
