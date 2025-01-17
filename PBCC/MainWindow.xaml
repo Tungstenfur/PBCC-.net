@@ -61,5 +61,6 @@
         <ProgressBar Height="30" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,40" Name="walk"></ProgressBar>
         <TextBlock Text="Walking..." HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,40" FontSize="20" Name="Walk" Visibility="Hidden"/>
         <TextBlock Text="0" VerticalAlignment="Bottom" Name="Temp" FontSize="30"/>
+        <Button Height="20" Width="20" VerticalAlignment="Bottom" Click="ButtonBase_OnClick"/>
     </Grid>
 </Window>

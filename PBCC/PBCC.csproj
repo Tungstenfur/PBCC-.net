@@ -29,6 +29,10 @@
     <Content Include="Images\rpON.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Remove="Sounds\MeltdownStart.wav" />
+    <Content Include="Sounds\MeltdownStart.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

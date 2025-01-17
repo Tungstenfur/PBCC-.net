@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Media;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -25,6 +26,7 @@ namespace PBCC
         int reactorPower = 1;
         string info;
         bool triggered = false;
+        SoundPlayer _player = new SoundPlayer();
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
         DispatcherTimer fan3 = new DispatcherTimer();
@@ -57,6 +59,12 @@ namespace PBCC
             vis.Start();
 
             
+        }
+        void playSound(string path)
+        {
+            _player.SoundLocation = path;
+            _player.Load();
+            _player.Play();
         }
 
         private void productionUpdate_Tick(object? sender, EventArgs e)
@@ -537,6 +545,11 @@ namespace PBCC
         {
             await HideAll();
             production.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            playSound("Sounds/MeltdownStart.wav");
         }
     }
 }
