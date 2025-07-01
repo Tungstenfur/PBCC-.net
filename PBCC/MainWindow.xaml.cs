@@ -1,4 +1,5 @@
-﻿using System.Media;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Media;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,8 @@ namespace PBCC
     /// </summary>
     public partial class MainWindow : Window
     {
+        BitmapImage RpON = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
+        BitmapImage RpOFF = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
         Energy energy = new Energy();
         bool[] fanBack =new bool[5];
         bool[] laser = new bool[5];
@@ -26,7 +29,8 @@ namespace PBCC
         int reactorPower = 1;
         string info;
         bool triggered = false;
-        SoundPlayer _player = new SoundPlayer();
+        private bool highTempWarn = false;
+        readonly SoundPlayer _player = new SoundPlayer();
         DispatcherTimer fan1 = new DispatcherTimer();
         DispatcherTimer fan2 = new DispatcherTimer();
         DispatcherTimer fan3 = new DispatcherTimer();
@@ -473,7 +477,7 @@ namespace PBCC
                 Fan5.Background = Brushes.Yellow;
             }
         }
-        private void tempChange_Tick(object sender, EventArgs e)
+        async private void tempChange_Tick(object sender, EventArgs e)
         {
             temp+=1.5;
             temp -= (Fan1Prog.Value / 600)*1.5;
@@ -493,10 +497,23 @@ namespace PBCC
             energy.update(laser, new int[] { (int)Fan1Prog.Value, (int)Fan2Prog.Value, (int)Fan3Prog.Value, (int)Fan4Prog.Value, (int)Fan5Prog.Value }, CoolantSwitch.Background == Brushes.Lime, reactorPower,Convert.ToInt32(temp));
             info=energy.powerInfo();
             output.Text = info;
+            if (temp > 3000 && !highTempWarn)
+            {
+                playSound("Sounds/HighTemp.wav");
+                highTempWarn = true;
+            }
+            else if(temp < 3000 && highTempWarn)
+            {
+                highTempWarn = false;
+            }
+
             if (temp > 4000 && !triggered)
             {
-                MessageBox.Show("Meltdown triggered");
                 triggered = true;
+                playSound("Sounds/MeltdownStart.wav");
+                await Task.Delay(10000);
+                playSound("Sounds/ECaval.wav");
+                
             }
             else if (temp < -4000 && !triggered)
             {
@@ -508,34 +525,34 @@ namespace PBCC
         {
             if (state == 0)
             {
-                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
-                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state0.Source = RpON;
+                state1.Source = RpOFF;
+                state2.Source = RpOFF;
+                state3.Source = RpOFF;
                 state = 1;
             }
             else if (state == 1)
             {
-                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
-                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state0.Source = RpOFF;
+                state1.Source = RpON;
+                state2.Source = RpOFF;
+                state3.Source = RpOFF;
                 state=2;
             }
             else if(state == 2)
             {
-                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
-                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
+                state0.Source = RpOFF;
+                state1.Source = RpOFF;
+                state2.Source = RpON;
+                state3.Source = RpOFF;
                 state = 3;
             }
             else if (state == 3)
             {
-                state0.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state1.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state2.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpOFF.png"));
-                state3.Source = new BitmapImage(new Uri(@"pack://application:,,,/PBCC;component/Images/rpON.png"));
+                state0.Source = RpOFF;
+                state1.Source = RpOFF;
+                state2.Source = RpOFF;
+                state3.Source = RpON;
                 state = 0;
             }
 
