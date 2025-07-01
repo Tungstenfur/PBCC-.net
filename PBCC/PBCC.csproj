@@ -33,6 +33,14 @@
     <Content Include="Sounds\MeltdownStart.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Remove="Sounds\HighTemp.wav" />
+    <Content Include="Sounds\HighTemp.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Remove="Sounds\ECaval.wav" />
+    <Content Include="Sounds\ECaval.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
