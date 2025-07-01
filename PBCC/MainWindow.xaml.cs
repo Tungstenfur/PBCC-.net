@@ -83,6 +83,7 @@ namespace PBCC
             rp.Visibility = Visibility.Collapsed;
             production.Visibility=Visibility.Collapsed;
             Coolant.Visibility = Visibility.Collapsed;
+            emergency.Visibility = Visibility.Collapsed;
             RP.IsEnabled= false;
             Laser.IsEnabled= false;
             Fans.IsEnabled= false;
@@ -494,7 +495,7 @@ namespace PBCC
             if (reactorPower == 3) temp += 3;
             if (reactorPower == 4) temp += 6;
             Temp.Text = Math.Round(temp).ToString();
-            energy.update(laser, new int[] { (int)Fan1Prog.Value, (int)Fan2Prog.Value, (int)Fan3Prog.Value, (int)Fan4Prog.Value, (int)Fan5Prog.Value }, CoolantSwitch.Background == Brushes.Lime, reactorPower,Convert.ToInt32(temp));
+            energy.update(laser, new int[] { (int)Fan1Prog.Value, (int)Fan2Prog.Value, (int)Fan3Prog.Value, (int)Fan4Prog.Value, (int)Fan5Prog.Value }, CoolantSwitch.Background == Brushes.Lime, reactorPower,Convert.ToInt32(temp)); //TODO: dont create new array every time
             info=energy.powerInfo();
             output.Text = info;
             if (temp > 3000 && !highTempWarn)
@@ -511,8 +512,10 @@ namespace PBCC
             {
                 triggered = true;
                 playSound("Sounds/MeltdownStart.wav");
+                logBox.Text += "\n[WARN] Reactor temperature critical, preparing system";
                 await Task.Delay(10000);
                 playSound("Sounds/ECaval.wav");
+                logBox.Text += "\n[INFO] Reactor shutdown authorized";
                 
             }
             else if (temp < -4000 && !triggered)
@@ -567,6 +570,12 @@ namespace PBCC
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             playSound("Sounds/MeltdownStart.wav");
+        }
+
+        async private void Emergency_OnClick(object sender, RoutedEventArgs e)
+        {
+            await HideAll();
+            emergency.Visibility = Visibility.Visible;
         }
     }
 }
